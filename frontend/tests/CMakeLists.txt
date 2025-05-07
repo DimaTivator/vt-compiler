@@ -1,12 +1,12 @@
 set(FRONTEND_SOURCES
-        ../frontend/utils/ast_utils.cpp
-        ../frontend/semantic.cpp
-        ../frontend/VtBaseListener.cpp
-        ../frontend/VtBaseVisitor.cpp
-        ../frontend/VtLexer.cpp
-        ../frontend/VtParser.cpp
-        ../frontend/VtListener.cpp
-        ../frontend/VtVisitor.cpp
+        ../utils/ast_utils.cpp
+        ../semantic.cpp
+        ../VtBaseListener.cpp
+        ../VtBaseVisitor.cpp
+        ../VtLexer.cpp
+        ../VtParser.cpp
+        ../VtListener.cpp
+        ../VtVisitor.cpp
 )
 
 add_executable(test_semantic

@@ -1,8 +1,8 @@
 #include <gtest/gtest.h>
 
-#include "../frontend/VtLexer.h"
-#include "../frontend/VtParser.h"
-#include "../frontend/semantic.h"
+#include "../VtLexer.h"
+#include "../VtParser.h"
+#include "../semantic.h"
 
 using namespace vt::sem;
 using namespace vt::ast;
