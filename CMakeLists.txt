@@ -19,6 +19,8 @@ add_executable(vt_compiler
         frontend/VtParser.cpp
         frontend/VtListener.cpp
         frontend/VtVisitor.cpp
+        middle/ir_generator.cpp
+        middle/utils/ir_utils.cpp
 )
 
 target_link_libraries(vt_compiler antlr4-runtime)
@@ -31,4 +33,5 @@ endif()
 
 add_subdirectory(external/googletest)
 enable_testing()
-add_subdirectory(tests)
+add_subdirectory(frontend/tests)
+add_subdirectory(middle/tests)
