@@ -2,13 +2,6 @@
 
 namespace vt::ast {
 
-template <typename Derived, typename... Args>
-std::any MakeNode(Args&&... args) {
-    auto derived = std::make_shared<Derived>(std::forward<Args>(args)...);
-    std::shared_ptr<ASTNode> base = derived;
-    return base;
-}
-
 std::any ASTBuilder::visitProgram(VtParser::ProgramContext* context) {
     std::vector<std::shared_ptr<ASTNode>> statements;
     for (auto* statement_context : context->statement()) {

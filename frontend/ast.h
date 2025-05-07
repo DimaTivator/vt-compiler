@@ -15,6 +15,13 @@ public:
     virtual ~ASTNode() = default;
 };
 
+template <typename Derived, typename... Args>
+std::any MakeNode(Args&&... args) {
+    auto derived = std::make_shared<Derived>(std::forward<Args>(args)...);
+    std::shared_ptr<ASTNode> base = derived;
+    return base;
+}
+
 class VarDeclNode : public ASTNode {
 public:
     std::string type_name;

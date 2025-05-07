@@ -13,6 +13,7 @@ add_executable(vt_compiler
         main.cpp
         frontend/utils/ast_utils.cpp
         frontend/ast.cpp
+        frontend/semantic.cpp
         frontend/VtBaseListener.cpp
         frontend/VtBaseVisitor.cpp
         frontend/VtLexer.cpp
