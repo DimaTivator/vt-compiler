@@ -2,7 +2,8 @@ grammar Vt;
 
 options { language = Cpp; }
 
-// Parser rules
+// ---------------Parser rules---------------
+
 program
     : statement* EOF
     ;
@@ -17,7 +18,7 @@ statement
     ;
 
 varDecl
-    : type ID ('=' expr)?
+    : type ID '=' expr
     ;
 
 type
@@ -30,15 +31,15 @@ assignment
     ;
 
 printStmt
-    : 'print' '(' expr ')'
+    : 'print' expr
     ;
 
 ifStmt
-    : 'if' '(' expr ')' statement ('else' statement)?
+    : 'if' '(' expr ')' block ('else' block)?
     ;
 
 whileStmt
-    : 'while' '(' expr ')' statement
+    : 'while' '(' expr ')' block
     ;
 
 block
@@ -46,19 +47,31 @@ block
     ;
 
 expr
-    : expr op=('*'|'/') expr        # MulDiv
-    | expr op=('+'|'-') expr        # AddSub
-    | expr op=('==' | '!=' | '<' | '>' | '<=' | '>=') expr  # Comparison
-    | expr 'and' expr                # AndExpr
-    | expr 'or' expr                 # OrExpr
-    | 'not' expr                     # NotExpr
-    | '(' expr ')'                   # ParensExpr
-    | INT_LITERAL                    # IntLiteral
-    | STRING_LITERAL                 # StringLiteral
-    | ID                             # IdExpr
+    : expr op=('*'|'/') expr              # MulDiv
+    | expr op=('+'|'-') expr              # AddSub
+    | expr op=('<=' | '>=' | '==' | '!=' | '<' | '>') expr  # Comparison
+    | expr 'and' expr                     # AndExpr
+    | expr 'or' expr                      # OrExpr
+    | 'not' expr                          # NotExpr
+    | '(' expr ')'                        # ParensExpr
+    | INT_LITERAL                         # IntLiteral
+    | STRING_LITERAL                      # StringLiteral
+    | ID                                  # IdExpr
     ;
 
-// Lexer rules
+// ---------------Lexer rules---------------
+
+// Keywords
+INT_KW      : 'int';
+STRING_KW   : 'string';
+IF_KW       : 'if';
+ELSE_KW     : 'else';
+WHILE_KW    : 'while';
+PRINT_KW    : 'print';
+AND_KW      : 'and';
+OR_KW       : 'or';
+NOT_KW      : 'not';
+
 INT_LITERAL
     : [0-9]+
     ;
@@ -71,18 +84,7 @@ ID
     : [a-zA-Z_] [a-zA-Z_0-9]*
     ;
 
-// Keywords
-IF      : 'if';
-ELSE    : 'else';
-WHILE   : 'while';
-INT     : 'int';
-STRING  : 'string';
-PRINT   : 'print';
-AND     : 'and';
-OR      : 'or';
-NOT     : 'not';
-
-// Operators and punctuation
+// Operators and delimiters
 EQ      : '=';
 SEMI    : ';';
 LPAREN  : '(';
@@ -100,7 +102,7 @@ GE      : '>=';
 EQEQ    : '==';
 NEQ     : '!=';
 
-// Whitespace and comments
+// Whitespaces and comments
 WS
     : [ \t\r\n]+ -> skip
     ;

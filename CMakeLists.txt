@@ -5,13 +5,19 @@ set(CMAKE_CXX_STANDARD 23)
 
 set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
 set(CMAKE_BUILD_WITH_INSTALL_RPATH TRUE)
-set(CMAKE_INSTALL_RPATH "/usr/local/lib")
 
 include_directories(/usr/local/include/antlr4-runtime)
 link_directories(/usr/local/lib)
 
 add_executable(vt_compiler
         main.cpp
+        frontend/ast.cpp
+        frontend/VtBaseListener.cpp
+        frontend/VtBaseVisitor.cpp
+        frontend/VtLexer.cpp
+        frontend/VtParser.cpp
+        frontend/VtListener.cpp
+        frontend/VtVisitor.cpp
 )
 
 target_link_libraries(vt_compiler antlr4-runtime)
