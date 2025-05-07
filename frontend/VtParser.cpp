@@ -1,5 +1,5 @@
 
-// Generated from ../Vt.g4 by ANTLR 4.10.1
+// Generated from Vt.g4 by ANTLR 4.10.1
 
 
 #include "VtListener.h"
@@ -62,40 +62,41 @@ void vtParserInitialize() {
     }
   );
   static const int32_t serializedATNSegment[] = {
-  	4,1,31,113,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,6,2,
+  	4,1,31,115,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,6,2,
   	7,7,7,2,8,7,8,2,9,7,9,1,0,5,0,22,8,0,10,0,12,0,25,9,0,1,0,1,0,1,1,1,1,
   	1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,3,1,41,8,1,1,2,1,2,1,2,1,2,1,
   	2,1,3,1,3,1,4,1,4,1,4,1,4,1,5,1,5,1,5,1,6,1,6,1,6,1,6,1,6,1,6,1,6,3,6,
   	64,8,6,1,7,1,7,1,7,1,7,1,7,1,7,1,8,1,8,5,8,74,8,8,10,8,12,8,77,9,8,1,
-  	8,1,8,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,3,9,91,8,9,1,9,1,9,1,9,
-  	1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,5,9,108,8,9,10,9,12,9,
-  	111,9,9,1,9,0,1,18,10,0,2,4,6,8,10,12,14,16,18,0,4,1,0,1,2,1,0,21,22,
-  	1,0,19,20,1,0,23,28,119,0,23,1,0,0,0,2,40,1,0,0,0,4,42,1,0,0,0,6,47,1,
-  	0,0,0,8,49,1,0,0,0,10,53,1,0,0,0,12,56,1,0,0,0,14,65,1,0,0,0,16,71,1,
-  	0,0,0,18,90,1,0,0,0,20,22,3,2,1,0,21,20,1,0,0,0,22,25,1,0,0,0,23,21,1,
-  	0,0,0,23,24,1,0,0,0,24,26,1,0,0,0,25,23,1,0,0,0,26,27,5,0,0,1,27,1,1,
-  	0,0,0,28,29,3,4,2,0,29,30,5,14,0,0,30,41,1,0,0,0,31,32,3,8,4,0,32,33,
-  	5,14,0,0,33,41,1,0,0,0,34,35,3,10,5,0,35,36,5,14,0,0,36,41,1,0,0,0,37,
-  	41,3,12,6,0,38,41,3,14,7,0,39,41,3,16,8,0,40,28,1,0,0,0,40,31,1,0,0,0,
-  	40,34,1,0,0,0,40,37,1,0,0,0,40,38,1,0,0,0,40,39,1,0,0,0,41,3,1,0,0,0,
-  	42,43,3,6,3,0,43,44,5,12,0,0,44,45,5,13,0,0,45,46,3,18,9,0,46,5,1,0,0,
-  	0,47,48,7,0,0,0,48,7,1,0,0,0,49,50,5,12,0,0,50,51,5,13,0,0,51,52,3,18,
-  	9,0,52,9,1,0,0,0,53,54,5,6,0,0,54,55,3,18,9,0,55,11,1,0,0,0,56,57,5,3,
-  	0,0,57,58,5,15,0,0,58,59,3,18,9,0,59,60,5,16,0,0,60,63,3,16,8,0,61,62,
-  	5,4,0,0,62,64,3,16,8,0,63,61,1,0,0,0,63,64,1,0,0,0,64,13,1,0,0,0,65,66,
-  	5,5,0,0,66,67,5,15,0,0,67,68,3,18,9,0,68,69,5,16,0,0,69,70,3,16,8,0,70,
-  	15,1,0,0,0,71,75,5,17,0,0,72,74,3,2,1,0,73,72,1,0,0,0,74,77,1,0,0,0,75,
-  	73,1,0,0,0,75,76,1,0,0,0,76,78,1,0,0,0,77,75,1,0,0,0,78,79,5,18,0,0,79,
-  	17,1,0,0,0,80,81,6,9,-1,0,81,82,5,9,0,0,82,91,3,18,9,5,83,84,5,15,0,0,
-  	84,85,3,18,9,0,85,86,5,16,0,0,86,91,1,0,0,0,87,91,5,10,0,0,88,91,5,11,
-  	0,0,89,91,5,12,0,0,90,80,1,0,0,0,90,83,1,0,0,0,90,87,1,0,0,0,90,88,1,
-  	0,0,0,90,89,1,0,0,0,91,109,1,0,0,0,92,93,10,10,0,0,93,94,7,1,0,0,94,108,
-  	3,18,9,11,95,96,10,9,0,0,96,97,7,2,0,0,97,108,3,18,9,10,98,99,10,8,0,
-  	0,99,100,7,3,0,0,100,108,3,18,9,9,101,102,10,7,0,0,102,103,5,7,0,0,103,
-  	108,3,18,9,8,104,105,10,6,0,0,105,106,5,8,0,0,106,108,3,18,9,7,107,92,
-  	1,0,0,0,107,95,1,0,0,0,107,98,1,0,0,0,107,101,1,0,0,0,107,104,1,0,0,0,
-  	108,111,1,0,0,0,109,107,1,0,0,0,109,110,1,0,0,0,110,19,1,0,0,0,111,109,
-  	1,0,0,0,7,23,40,63,75,90,107,109
+  	8,1,8,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,3,9,93,8,9,1,9,
+  	1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,5,9,110,8,9,10,
+  	9,12,9,113,9,9,1,9,0,1,18,10,0,2,4,6,8,10,12,14,16,18,0,4,1,0,1,2,1,0,
+  	21,22,1,0,19,20,1,0,23,28,122,0,23,1,0,0,0,2,40,1,0,0,0,4,42,1,0,0,0,
+  	6,47,1,0,0,0,8,49,1,0,0,0,10,53,1,0,0,0,12,56,1,0,0,0,14,65,1,0,0,0,16,
+  	71,1,0,0,0,18,92,1,0,0,0,20,22,3,2,1,0,21,20,1,0,0,0,22,25,1,0,0,0,23,
+  	21,1,0,0,0,23,24,1,0,0,0,24,26,1,0,0,0,25,23,1,0,0,0,26,27,5,0,0,1,27,
+  	1,1,0,0,0,28,29,3,4,2,0,29,30,5,14,0,0,30,41,1,0,0,0,31,32,3,8,4,0,32,
+  	33,5,14,0,0,33,41,1,0,0,0,34,35,3,10,5,0,35,36,5,14,0,0,36,41,1,0,0,0,
+  	37,41,3,12,6,0,38,41,3,14,7,0,39,41,3,16,8,0,40,28,1,0,0,0,40,31,1,0,
+  	0,0,40,34,1,0,0,0,40,37,1,0,0,0,40,38,1,0,0,0,40,39,1,0,0,0,41,3,1,0,
+  	0,0,42,43,3,6,3,0,43,44,5,12,0,0,44,45,5,13,0,0,45,46,3,18,9,0,46,5,1,
+  	0,0,0,47,48,7,0,0,0,48,7,1,0,0,0,49,50,5,12,0,0,50,51,5,13,0,0,51,52,
+  	3,18,9,0,52,9,1,0,0,0,53,54,5,6,0,0,54,55,3,18,9,0,55,11,1,0,0,0,56,57,
+  	5,3,0,0,57,58,5,15,0,0,58,59,3,18,9,0,59,60,5,16,0,0,60,63,3,16,8,0,61,
+  	62,5,4,0,0,62,64,3,16,8,0,63,61,1,0,0,0,63,64,1,0,0,0,64,13,1,0,0,0,65,
+  	66,5,5,0,0,66,67,5,15,0,0,67,68,3,18,9,0,68,69,5,16,0,0,69,70,3,16,8,
+  	0,70,15,1,0,0,0,71,75,5,17,0,0,72,74,3,2,1,0,73,72,1,0,0,0,74,77,1,0,
+  	0,0,75,73,1,0,0,0,75,76,1,0,0,0,76,78,1,0,0,0,77,75,1,0,0,0,78,79,5,18,
+  	0,0,79,17,1,0,0,0,80,81,6,9,-1,0,81,82,5,9,0,0,82,93,3,18,9,6,83,84,5,
+  	20,0,0,84,93,3,18,9,5,85,86,5,15,0,0,86,87,3,18,9,0,87,88,5,16,0,0,88,
+  	93,1,0,0,0,89,93,5,10,0,0,90,93,5,11,0,0,91,93,5,12,0,0,92,80,1,0,0,0,
+  	92,83,1,0,0,0,92,85,1,0,0,0,92,89,1,0,0,0,92,90,1,0,0,0,92,91,1,0,0,0,
+  	93,111,1,0,0,0,94,95,10,11,0,0,95,96,7,1,0,0,96,110,3,18,9,12,97,98,10,
+  	10,0,0,98,99,7,2,0,0,99,110,3,18,9,11,100,101,10,9,0,0,101,102,7,3,0,
+  	0,102,110,3,18,9,10,103,104,10,8,0,0,104,105,5,7,0,0,105,110,3,18,9,9,
+  	106,107,10,7,0,0,107,108,5,8,0,0,108,110,3,18,9,8,109,94,1,0,0,0,109,
+  	97,1,0,0,0,109,100,1,0,0,0,109,103,1,0,0,0,109,106,1,0,0,0,110,113,1,
+  	0,0,0,111,109,1,0,0,0,111,112,1,0,0,0,112,19,1,0,0,0,113,111,1,0,0,0,
+  	7,23,40,63,75,92,109,111
   };
   staticData->serializedATN = antlr4::atn::SerializedATNView(serializedATNSegment, sizeof(serializedATNSegment) / sizeof(serializedATNSegment[0]));
 
@@ -1169,6 +1170,35 @@ std::any VtParser::ComparisonContext::accept(tree::ParseTreeVisitor *visitor) {
   else
     return visitor->visitChildren(this);
 }
+//----------------- NegExprContext ------------------------------------------------------------------
+
+tree::TerminalNode* VtParser::NegExprContext::MINUS() {
+  return getToken(VtParser::MINUS, 0);
+}
+
+VtParser::ExprContext* VtParser::NegExprContext::expr() {
+  return getRuleContext<VtParser::ExprContext>(0);
+}
+
+VtParser::NegExprContext::NegExprContext(ExprContext *ctx) { copyFrom(ctx); }
+
+void VtParser::NegExprContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<VtListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterNegExpr(this);
+}
+void VtParser::NegExprContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<VtListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitNegExpr(this);
+}
+
+std::any VtParser::NegExprContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<VtVisitor*>(visitor))
+    return parserVisitor->visitNegExpr(this);
+  else
+    return visitor->visitChildren(this);
+}
 //----------------- ParensExprContext ------------------------------------------------------------------
 
 tree::TerminalNode* VtParser::ParensExprContext::LPAREN() {
@@ -1315,7 +1345,7 @@ VtParser::ExprContext* VtParser::expr(int precedence) {
   try {
     size_t alt;
     enterOuterAlt(_localctx, 1);
-    setState(90);
+    setState(92);
     _errHandler->sync(this);
     switch (_input->LA(1)) {
       case VtParser::NOT_KW: {
@@ -1326,6 +1356,17 @@ VtParser::ExprContext* VtParser::expr(int precedence) {
         setState(81);
         match(VtParser::NOT_KW);
         setState(82);
+        expr(6);
+        break;
+      }
+
+      case VtParser::MINUS: {
+        _localctx = _tracker.createInstance<NegExprContext>(_localctx);
+        _ctx = _localctx;
+        previousContext = _localctx;
+        setState(83);
+        match(VtParser::MINUS);
+        setState(84);
         expr(5);
         break;
       }
@@ -1334,11 +1375,11 @@ VtParser::ExprContext* VtParser::expr(int precedence) {
         _localctx = _tracker.createInstance<ParensExprContext>(_localctx);
         _ctx = _localctx;
         previousContext = _localctx;
-        setState(83);
-        match(VtParser::LPAREN);
-        setState(84);
-        expr(0);
         setState(85);
+        match(VtParser::LPAREN);
+        setState(86);
+        expr(0);
+        setState(87);
         match(VtParser::RPAREN);
         break;
       }
@@ -1347,7 +1388,7 @@ VtParser::ExprContext* VtParser::expr(int precedence) {
         _localctx = _tracker.createInstance<IntLiteralContext>(_localctx);
         _ctx = _localctx;
         previousContext = _localctx;
-        setState(87);
+        setState(89);
         match(VtParser::INT_LITERAL);
         break;
       }
@@ -1356,7 +1397,7 @@ VtParser::ExprContext* VtParser::expr(int precedence) {
         _localctx = _tracker.createInstance<StringLiteralContext>(_localctx);
         _ctx = _localctx;
         previousContext = _localctx;
-        setState(88);
+        setState(90);
         match(VtParser::STRING_LITERAL);
         break;
       }
@@ -1365,7 +1406,7 @@ VtParser::ExprContext* VtParser::expr(int precedence) {
         _localctx = _tracker.createInstance<IdExprContext>(_localctx);
         _ctx = _localctx;
         previousContext = _localctx;
-        setState(89);
+        setState(91);
         match(VtParser::ID);
         break;
       }
@@ -1374,7 +1415,7 @@ VtParser::ExprContext* VtParser::expr(int precedence) {
       throw NoViableAltException(this);
     }
     _ctx->stop = _input->LT(-1);
-    setState(109);
+    setState(111);
     _errHandler->sync(this);
     alt = getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 6, _ctx);
     while (alt != 2 && alt != atn::ATN::INVALID_ALT_NUMBER) {
@@ -1382,17 +1423,17 @@ VtParser::ExprContext* VtParser::expr(int precedence) {
         if (!_parseListeners.empty())
           triggerExitRuleEvent();
         previousContext = _localctx;
-        setState(107);
+        setState(109);
         _errHandler->sync(this);
         switch (getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 5, _ctx)) {
         case 1: {
           auto newContext = _tracker.createInstance<MulDivContext>(_tracker.createInstance<ExprContext>(parentContext, parentState));
           _localctx = newContext;
           pushNewRecursionContext(newContext, startState, RuleExpr);
-          setState(92);
+          setState(94);
 
-          if (!(precpred(_ctx, 10))) throw FailedPredicateException(this, "precpred(_ctx, 10)");
-          setState(93);
+          if (!(precpred(_ctx, 11))) throw FailedPredicateException(this, "precpred(_ctx, 11)");
+          setState(95);
           antlrcpp::downCast<MulDivContext *>(_localctx)->op = _input->LT(1);
           _la = _input->LA(1);
           if (!(_la == VtParser::STAR
@@ -1404,8 +1445,8 @@ VtParser::ExprContext* VtParser::expr(int precedence) {
             _errHandler->reportMatch(this);
             consume();
           }
-          setState(94);
-          expr(11);
+          setState(96);
+          expr(12);
           break;
         }
 
@@ -1413,10 +1454,10 @@ VtParser::ExprContext* VtParser::expr(int precedence) {
           auto newContext = _tracker.createInstance<AddSubContext>(_tracker.createInstance<ExprContext>(parentContext, parentState));
           _localctx = newContext;
           pushNewRecursionContext(newContext, startState, RuleExpr);
-          setState(95);
+          setState(97);
 
-          if (!(precpred(_ctx, 9))) throw FailedPredicateException(this, "precpred(_ctx, 9)");
-          setState(96);
+          if (!(precpred(_ctx, 10))) throw FailedPredicateException(this, "precpred(_ctx, 10)");
+          setState(98);
           antlrcpp::downCast<AddSubContext *>(_localctx)->op = _input->LT(1);
           _la = _input->LA(1);
           if (!(_la == VtParser::PLUS
@@ -1428,8 +1469,8 @@ VtParser::ExprContext* VtParser::expr(int precedence) {
             _errHandler->reportMatch(this);
             consume();
           }
-          setState(97);
-          expr(10);
+          setState(99);
+          expr(11);
           break;
         }
 
@@ -1437,10 +1478,10 @@ VtParser::ExprContext* VtParser::expr(int precedence) {
           auto newContext = _tracker.createInstance<ComparisonContext>(_tracker.createInstance<ExprContext>(parentContext, parentState));
           _localctx = newContext;
           pushNewRecursionContext(newContext, startState, RuleExpr);
-          setState(98);
+          setState(100);
 
-          if (!(precpred(_ctx, 8))) throw FailedPredicateException(this, "precpred(_ctx, 8)");
-          setState(99);
+          if (!(precpred(_ctx, 9))) throw FailedPredicateException(this, "precpred(_ctx, 9)");
+          setState(101);
           antlrcpp::downCast<ComparisonContext *>(_localctx)->op = _input->LT(1);
           _la = _input->LA(1);
           if (!((((_la & ~ 0x3fULL) == 0) &&
@@ -1456,8 +1497,8 @@ VtParser::ExprContext* VtParser::expr(int precedence) {
             _errHandler->reportMatch(this);
             consume();
           }
-          setState(100);
-          expr(9);
+          setState(102);
+          expr(10);
           break;
         }
 
@@ -1465,13 +1506,13 @@ VtParser::ExprContext* VtParser::expr(int precedence) {
           auto newContext = _tracker.createInstance<AndExprContext>(_tracker.createInstance<ExprContext>(parentContext, parentState));
           _localctx = newContext;
           pushNewRecursionContext(newContext, startState, RuleExpr);
-          setState(101);
-
-          if (!(precpred(_ctx, 7))) throw FailedPredicateException(this, "precpred(_ctx, 7)");
-          setState(102);
-          match(VtParser::AND_KW);
           setState(103);
-          expr(8);
+
+          if (!(precpred(_ctx, 8))) throw FailedPredicateException(this, "precpred(_ctx, 8)");
+          setState(104);
+          match(VtParser::AND_KW);
+          setState(105);
+          expr(9);
           break;
         }
 
@@ -1479,13 +1520,13 @@ VtParser::ExprContext* VtParser::expr(int precedence) {
           auto newContext = _tracker.createInstance<OrExprContext>(_tracker.createInstance<ExprContext>(parentContext, parentState));
           _localctx = newContext;
           pushNewRecursionContext(newContext, startState, RuleExpr);
-          setState(104);
-
-          if (!(precpred(_ctx, 6))) throw FailedPredicateException(this, "precpred(_ctx, 6)");
-          setState(105);
-          match(VtParser::OR_KW);
           setState(106);
-          expr(7);
+
+          if (!(precpred(_ctx, 7))) throw FailedPredicateException(this, "precpred(_ctx, 7)");
+          setState(107);
+          match(VtParser::OR_KW);
+          setState(108);
+          expr(8);
           break;
         }
 
@@ -1493,7 +1534,7 @@ VtParser::ExprContext* VtParser::expr(int precedence) {
           break;
         } 
       }
-      setState(111);
+      setState(113);
       _errHandler->sync(this);
       alt = getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 6, _ctx);
     }
@@ -1518,11 +1559,11 @@ bool VtParser::sempred(RuleContext *context, size_t ruleIndex, size_t predicateI
 
 bool VtParser::exprSempred(ExprContext *_localctx, size_t predicateIndex) {
   switch (predicateIndex) {
-    case 0: return precpred(_ctx, 10);
-    case 1: return precpred(_ctx, 9);
-    case 2: return precpred(_ctx, 8);
-    case 3: return precpred(_ctx, 7);
-    case 4: return precpred(_ctx, 6);
+    case 0: return precpred(_ctx, 11);
+    case 1: return precpred(_ctx, 10);
+    case 2: return precpred(_ctx, 9);
+    case 3: return precpred(_ctx, 8);
+    case 4: return precpred(_ctx, 7);
 
   default:
     break;

@@ -53,6 +53,7 @@ expr
     | expr 'and' expr                     # AndExpr
     | expr 'or' expr                      # OrExpr
     | 'not' expr                          # NotExpr
+    | '-' expr                            # NegExpr
     | '(' expr ')'                        # ParensExpr
     | INT_LITERAL                         # IntLiteral
     | STRING_LITERAL                      # StringLiteral

@@ -1,5 +1,5 @@
 
-// Generated from ../Vt.g4 by ANTLR 4.10.1
+// Generated from Vt.g4 by ANTLR 4.10.1
 
 #pragma once
 
@@ -48,6 +48,8 @@ public:
     virtual std::any visitAddSub(VtParser::AddSubContext *context) = 0;
 
     virtual std::any visitComparison(VtParser::ComparisonContext *context) = 0;
+
+    virtual std::any visitNegExpr(VtParser::NegExprContext *context) = 0;
 
     virtual std::any visitParensExpr(VtParser::ParensExprContext *context) = 0;
 

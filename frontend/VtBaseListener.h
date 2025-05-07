@@ -1,5 +1,5 @@
 
-// Generated from ../Vt.g4 by ANTLR 4.10.1
+// Generated from Vt.g4 by ANTLR 4.10.1
 
 #pragma once
 
@@ -60,6 +60,9 @@ public:
 
   virtual void enterComparison(VtParser::ComparisonContext * /*ctx*/) override { }
   virtual void exitComparison(VtParser::ComparisonContext * /*ctx*/) override { }
+
+  virtual void enterNegExpr(VtParser::NegExprContext * /*ctx*/) override { }
+  virtual void exitNegExpr(VtParser::NegExprContext * /*ctx*/) override { }
 
   virtual void enterParensExpr(VtParser::ParensExprContext * /*ctx*/) override { }
   virtual void exitParensExpr(VtParser::ParensExprContext * /*ctx*/) override { }

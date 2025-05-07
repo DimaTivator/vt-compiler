@@ -1,5 +1,5 @@
 
-// Generated from ../Vt.g4 by ANTLR 4.10.1
+// Generated from Vt.g4 by ANTLR 4.10.1
 
 #pragma once
 
@@ -307,6 +307,18 @@ public:
     antlr4::tree::TerminalNode *NEQ();
     antlr4::tree::TerminalNode *LT();
     antlr4::tree::TerminalNode *GT();
+    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
+    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
+
+    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+  };
+
+  class  NegExprContext : public ExprContext {
+  public:
+    NegExprContext(ExprContext *ctx);
+
+    antlr4::tree::TerminalNode *MINUS();
+    ExprContext *expr();
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
 

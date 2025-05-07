@@ -1,5 +1,5 @@
 
-// Generated from ../Vt.g4 by ANTLR 4.10.1
+// Generated from Vt.g4 by ANTLR 4.10.1
 
 #pragma once
 
@@ -72,6 +72,10 @@ public:
   }
 
   virtual std::any visitComparison(VtParser::ComparisonContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitNegExpr(VtParser::NegExprContext *ctx) override {
     return visitChildren(ctx);
   }
 
