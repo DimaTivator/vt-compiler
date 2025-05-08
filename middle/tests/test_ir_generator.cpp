@@ -1,15 +1,15 @@
 #include <gtest/gtest.h>
 
-#include "../../frontend/ast.h"
-#include "../ir_generator.h"
+#include "../frontend/ast_builder.h"
+#include "../middle/ir_generator.h"
 
 using namespace vt::ir;
 using namespace vt::ast;
 
 std::shared_ptr<BlockNode> MakeBlock(
-    std::initializer_list<std::shared_ptr<ASTNode>> stmts) {
+    std::initializer_list<std::shared_ptr<ASTNode>> statements) {
     return std::make_shared<BlockNode>(
-        std::vector<std::shared_ptr<ASTNode>>(stmts));
+        std::vector<std::shared_ptr<ASTNode>>(statements));
 }
 
 TEST(IRGenerator, SimpleAssignment) {
