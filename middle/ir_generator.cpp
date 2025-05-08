@@ -22,13 +22,14 @@ std::string IRGenerator::NewRegister() {
 }
 
 std::string IRGenerator::NewLabel() {
-    return "L" + std::to_string(label_count_++);
+    return "L" + std::to_string(label_count_++) + "'";
 }
 
 void IRGenerator::Emit(const IRInstruction& instr) { ir_.push_back(instr); }
 
 std::string IRGenerator::ProcessUnaryOpNode(
     const std::shared_ptr<vt::ast::UnaryOpNode>& node) {
+    //
     auto operand_t = EmitExpr(node->operand);
     auto reg = NewRegister();
     if (node->op == "-") {
@@ -46,38 +47,11 @@ std::string IRGenerator::ProcessUnaryOpNode(
 
 std::string IRGenerator::ProcessBinaryOpNode(
     const std::shared_ptr<vt::ast::BinaryOpNode>& node) {
+    //
     auto lhs = EmitExpr(node->left);
     auto rhs = EmitExpr(node->right);
     auto reg = NewRegister();
-    IRInstruction::Op op;
-
-    if (node->op == "+") {
-        op = IRInstruction::Op::ADD;
-    } else if (node->op == "-") {
-        op = IRInstruction::Op::SUB;
-    } else if (node->op == "*") {
-        op = IRInstruction::Op::MUL;
-    } else if (node->op == "/") {
-        op = IRInstruction::Op::DIV;
-    }
-
-    else if (node->op == "==" || node->op == "!=" || node->op == "<" ||
-             node->op == ">" || node->op == "<=" || node->op == ">=") {
-        op = IRInstruction::Op::SUB;
-    }
-
-    else if (node->op == "not") {
-        op = IRInstruction::Op::NOT;
-    } else if (node->op == "and") {
-        op = IRInstruction::Op::AND;
-    } else if (node->op == "or") {
-        op = IRInstruction::Op::OR;
-    }
-
-    else {
-        throw std::runtime_error("Unsupported binary op: " + node->op);
-    }
-
+    IRInstruction::Op op = IRInstruction::StringToBinOp(node->op);
     Emit({op, reg, lhs, rhs});
     return reg;
 }
@@ -129,6 +103,7 @@ void IRGenerator::ProcessIfNode(const std::shared_ptr<ast::IfNode>& node) {
 
 void IRGenerator::ProcessWhileNode(
     const std::shared_ptr<ast::WhileNode>& node) {
+    //
     auto start_l = NewLabel();
     auto end_l = NewLabel();
 
@@ -190,45 +165,66 @@ void IRGenerator::EmitBlockNode(const std::shared_ptr<vt::ast::ASTNode>& node) {
     EmitBlock(block);
 }
 
+namespace {
+
+bool IsVReg(const std::string& name) {
+    return std::regex_match(name, std::regex("v[0-9]+'$"));
+}
+
+bool IsLabel(const std::string& name) {
+    return std::regex_match(name, std::regex("L[0-9]+'$"));
+}
+
+IRInstruction::Op AssignVarToReg(
+    IRInstruction instr,
+    std::unordered_map<std::string, std::string>& var_to_reg) {
+    //
+    if (!IsVReg(instr.result)) {
+        std::string var = instr.result;
+        if (const auto* reg = std::get_if<std::string>(&instr.arg1)) {
+            var_to_reg[var] = *reg;
+        }
+    }
+}
+
+IRInstruction ReplaceVarWithReg(
+    IRInstruction instr,
+    const std::unordered_map<std::string, std::string>& var_to_reg) {
+    //
+    IRInstruction new_instr = instr;
+    if (!IsVReg(instr.result) && var_to_reg.contains(instr.result)) {
+        new_instr.result = var_to_reg.at(instr.result);
+    }
+    if (const auto* arg1 = std::get_if<std::string>(&instr.arg1)) {
+        if (!IsVReg(*arg1) && var_to_reg.contains(*arg1)) {
+            new_instr.arg1 = var_to_reg.at(*arg1);
+        }
+    }
+    if (const auto* arg2 = std::get_if<std::string>(&instr.arg2)) {
+        if (!IsVReg(*arg2) && var_to_reg.contains(*arg2)) {
+            new_instr.arg2 = var_to_reg.at(*arg2);
+        }
+    }
+    return new_instr;
+}
+
+}  // namespace
+
 IR RemoveVariableNames(const IR& ir) {
     IR result;
     std::unordered_map<std::string, std::string> var_to_reg;
 
-    auto is_vreg = [](const std::string& str) {
-        return std::regex_match(str, std::regex("v[0-9]+'$"));
-    };
-
     for (const auto& instr : ir) {
         switch (instr.op) {
             case IRInstruction::Op::ASSIGN: {
-                if (!is_vreg(instr.result)) {
-                    std::string var = instr.result;
-                    if (const auto* reg =
-                            std::get_if<std::string>(&instr.arg1)) {
-                        var_to_reg[var] = *reg;
-                    }
-                }
+                AssignVarToReg(instr, var_to_reg);
             } break;
             case IRInstruction::Op::LABEL:
             case IRInstruction::Op::LOAD_CONST: {
                 result.push_back(instr);
             } break;
             default: {
-                IRInstruction new_instr = instr;
-                if (!is_vreg(instr.result)) {
-                    new_instr.result = var_to_reg[instr.result];
-                }
-                if (const auto* arg1 = std::get_if<std::string>(&instr.arg1)) {
-                    if (!is_vreg(*arg1)) {
-                        new_instr.arg1 = var_to_reg[*arg1];
-                    }
-                }
-                if (const auto* arg2 = std::get_if<std::string>(&instr.arg2)) {
-                    if (!is_vreg(*arg2)) {
-                        new_instr.arg2 = var_to_reg[*arg2];
-                    }
-                }
-                result.push_back(new_instr);
+                result.push_back(ReplaceVarWithReg(instr, var_to_reg));
             }
         }
     }
