@@ -1,6 +1,7 @@
 set(FRONTEND_SOURCES
         ../utils/ast_utils.cpp
         ../semantic.cpp
+        ../ast_builder.cpp
         ../VtBaseListener.cpp
         ../VtBaseVisitor.cpp
         ../VtLexer.cpp

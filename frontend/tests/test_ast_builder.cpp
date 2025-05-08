@@ -2,9 +2,8 @@
 
 #include "../VtLexer.h"
 #include "../VtParser.h"
-#include "../semantic.h"
+#include "../ast_builder.h"
 
-using namespace vt::sem;
 using namespace vt::ast;
 using namespace antlr4;
 
@@ -14,7 +13,7 @@ static std::shared_ptr<ASTNode> BuildAst(const std::string& source) {
     CommonTokenStream tokens(&lexer);
     VtParser parser(&tokens);
 
-    SemanticAnalyzer builder;
+    ASTBuilder builder;
     std::any any_root = builder.visit(parser.program());
     auto base_ptr = std::any_cast<std::shared_ptr<ASTNode>>(any_root);
     return base_ptr;

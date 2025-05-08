@@ -11,6 +11,7 @@ link_directories(/usr/local/lib)
 
 add_executable(vt_compiler
         main.cpp
+        frontend/ast_builder.cpp
         frontend/utils/ast_utils.cpp
         frontend/semantic.cpp
         frontend/VtBaseListener.cpp

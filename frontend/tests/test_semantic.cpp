@@ -2,6 +2,7 @@
 
 #include "../VtLexer.h"
 #include "../VtParser.h"
+#include "../ast_builder.h"
 #include "../semantic.h"
 
 using namespace vt::sem;
@@ -16,8 +17,12 @@ static std::string RunSemantic(const std::string& src) {
     CommonTokenStream tokens(&lexer);
     VtParser parser(&tokens);
 
+    vt::ast::ASTBuilder builder;
+    auto ast = std::any_cast<std::shared_ptr<vt::ast::ASTNode>>(
+        builder.visit(parser.program()));
+
     SemanticAnalyzer sem;
-    sem.visitProgram(parser.program());
+    sem.Analyze(ast);
 
     return testing::internal::GetCapturedStderr();
 }
@@ -77,4 +82,3 @@ int main(int argc, char** argv) {
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
 }
-
