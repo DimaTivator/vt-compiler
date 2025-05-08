@@ -167,18 +167,8 @@ void IRGenerator::EmitBlockNode(const std::shared_ptr<vt::ast::ASTNode>& node) {
 
 namespace {
 
-bool IsVReg(const std::string& name) {
-    return std::regex_match(name, std::regex("v[0-9]+'$"));
-}
-
-bool IsLabel(const std::string& name) {
-    return std::regex_match(name, std::regex("L[0-9]+'$"));
-}
-
-IRInstruction::Op AssignVarToReg(
-    IRInstruction instr,
-    std::unordered_map<std::string, std::string>& var_to_reg) {
-    //
+void AssignVarToReg(IRInstruction instr,
+                    std::unordered_map<std::string, std::string>& var_to_reg) {
     if (!IsVReg(instr.result)) {
         std::string var = instr.result;
         if (const auto* reg = std::get_if<std::string>(&instr.arg1)) {

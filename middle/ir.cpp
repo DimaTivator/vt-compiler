@@ -1,5 +1,7 @@
 #include "ir.h"
 
+#include <regex>
+
 namespace vt::ir {
 
 const std::unordered_map<std::string, IRInstruction::Op>
@@ -45,6 +47,14 @@ IRInstruction::Op IRInstruction::StringToBinOp(const std::string& op) {
 
 std::string IRInstruction::OpToString(IRInstruction::Op op) {
     return kOpToString.at(op);
+}
+
+bool IsVReg(const std::string& name) {
+    return std::regex_match(name, std::regex("v[0-9]+'$"));
+}
+
+bool IsLabel(const std::string& name) {
+    return std::regex_match(name, std::regex("L[0-9]+'$"));
 }
 
 }  // namespace vt::ir

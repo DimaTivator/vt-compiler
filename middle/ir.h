@@ -43,6 +43,9 @@ private:
     static const std::unordered_map<Op, std::string> kOpToString;
 };
 
+bool IsVReg(const std::string& name);
+bool IsLabel(const std::string& name);
+
 using IR = std::vector<IRInstruction>;
 
 }  // namespace vt::ir
