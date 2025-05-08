@@ -1,5 +1,8 @@
 #include "ir_generator.h"
 
+#include <regex>
+#include <unordered_map>
+
 namespace vt::ir {
 
 IRGenerator::IRGenerator() : temp_count_(0), label_count_(0) {}
@@ -15,7 +18,7 @@ IR IRGenerator::Generate(const std::shared_ptr<vt::ast::ASTNode>& root) {
 }
 
 std::string IRGenerator::NewRegister() {
-    return "v" + std::to_string(temp_count_++);
+    return "v" + std::to_string(temp_count_++) + "'";
 }
 
 std::string IRGenerator::NewLabel() {
@@ -124,7 +127,8 @@ void IRGenerator::ProcessIfNode(const std::shared_ptr<ast::IfNode>& node) {
     Emit({IRInstruction::Op::LABEL, end_l, 0, 0});
 }
 
-void IRGenerator::ProcessWhileNode(const std::shared_ptr<ast::WhileNode>& node) {
+void IRGenerator::ProcessWhileNode(
+    const std::shared_ptr<ast::WhileNode>& node) {
     auto start_l = NewLabel();
     auto end_l = NewLabel();
 
@@ -184,6 +188,52 @@ void IRGenerator::EmitBlock(const std::shared_ptr<vt::ast::BlockNode>& block) {
 void IRGenerator::EmitBlockNode(const std::shared_ptr<vt::ast::ASTNode>& node) {
     auto block = std::dynamic_pointer_cast<vt::ast::BlockNode>(node);
     EmitBlock(block);
+}
+
+IR RemoveVariableNames(const IR& ir) {
+    IR result;
+    std::unordered_map<std::string, std::string> var_to_reg;
+
+    auto is_vreg = [](const std::string& str) {
+        return std::regex_match(str, std::regex("v[0-9]+'$"));
+    };
+
+    for (const auto& instr : ir) {
+        switch (instr.op) {
+            case IRInstruction::Op::ASSIGN: {
+                if (!is_vreg(instr.result)) {
+                    std::string var = instr.result;
+                    if (const auto* reg =
+                            std::get_if<std::string>(&instr.arg1)) {
+                        var_to_reg[var] = *reg;
+                    }
+                }
+            } break;
+            case IRInstruction::Op::LABEL:
+            case IRInstruction::Op::LOAD_CONST: {
+                result.push_back(instr);
+            } break;
+            default: {
+                IRInstruction new_instr = instr;
+                if (!is_vreg(instr.result)) {
+                    new_instr.result = var_to_reg[instr.result];
+                }
+                if (const auto* arg1 = std::get_if<std::string>(&instr.arg1)) {
+                    if (!is_vreg(*arg1)) {
+                        new_instr.arg1 = var_to_reg[*arg1];
+                    }
+                }
+                if (const auto* arg2 = std::get_if<std::string>(&instr.arg2)) {
+                    if (!is_vreg(*arg2)) {
+                        new_instr.arg2 = var_to_reg[*arg2];
+                    }
+                }
+                result.push_back(new_instr);
+            }
+        }
+    }
+
+    return result;
 }
 
 }  // namespace vt::ir

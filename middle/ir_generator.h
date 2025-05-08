@@ -42,4 +42,6 @@ private:
     void EmitBlockNode(const std::shared_ptr<ast::ASTNode>& node);
 };
 
+IR RemoveVariableNames(const IR& ir);
+
 }  // namespace vt::ir
