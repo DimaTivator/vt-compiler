@@ -2,7 +2,6 @@
 
 // clang-format off
 /*
- * x31 -- section data address
  *
  * ASSIGN <reg>, <arg>, -               ---> addi <reg>, <arg>, 0
  * LOAD_CONST <reg>, <value>, -         ---> li <reg>, <value>
@@ -19,13 +18,16 @@
  * CMP_GE <res>, <lhs>, <rhs>           ---> sge <res>, <lhs>, <rhs>
  * AND <res>, <lhs>, <rhs>              ---> and <res>, <lhs>, <rhs>
  * OR <res>, <lhs>, <rhs>               ---> or <res>, <lhs>, <rhs>
- * PRINT "", <arg>, 0
+ * PRINT "", <arg>, 0                   ---> ewrite <arg>
  * LABEL <label>, 0, 0                  ---> <label>:
  * BRANCH_IF_ZERO <label>, <arg>, 0     ---> beq <arg>, x0, <label>
  *
  * GOTO <label>, 0, 0                   ---> jal x0, <label>
  *
- * LOAD  <reg>, <spill_slot>, 0         ---> lw <reg>, x31, <spill_slot>
- * STORE <spill_slot>, <reg>, 0         --->
+ * LOAD  <reg>, <spill_slot>, 0         ---> [disappears]
+ * STORE <spill_slot>, <reg>, 0         ---> [disappears]
+ *
+ * LOADA  <reg>, <addr_reg>, 0          ---> lw <reg>, <addr_reg>, 0
+ * STOREA <reg>, <addr_reg>, 0          ---> sw <
  */
 // clang-format on

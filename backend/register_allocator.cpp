@@ -121,7 +121,7 @@ IR RewriteIR(const IR& ir,
                 if (it != spill_slot.end()) {
                     int slot = it->second;
                     new_ir.push_back({ir::IRInstruction::Op::LOAD, phys_src,
-                                      std::to_string(slot)});
+                                      "spill" + std::to_string(slot) + "'"});
                 }
                 return phys_src;
             }
@@ -154,7 +154,8 @@ IR RewriteIR(const IR& ir,
                 int slot = it->second;
                 const auto& phys_reg = reg_map.at(instr.result);
                 new_ir.push_back({ir::IRInstruction::Op::STORE,
-                                  std::to_string(slot), phys_reg});
+                                  "spill" + std::to_string(slot) + "'",
+                                  phys_reg});
             }
         }
     }
