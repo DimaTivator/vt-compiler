@@ -1,5 +1,9 @@
 #pragma once
 
+#include <sstream>
+
+#include "../middle/ir.h"
+
 // clang-format off
 /*
  *
@@ -28,6 +32,16 @@
  * STORE <spill_slot>, <reg>, 0         ---> [disappears]
  *
  * LOADA  <reg>, <addr_reg>, 0          ---> lw <reg>, <addr_reg>, 0
- * STOREA <reg>, <addr_reg>, 0          ---> sw <
+ * STOREA <reg>, <addr_reg>, 0          ---> sw <addr_reg>, 0, <reg>
  */
 // clang-format on
+
+namespace vt::back {
+
+using Op = ir::IRInstruction::Op;
+
+using Asm = std::vector<std::string>;
+
+Asm GenerateASM(const ir::IR& ir);
+
+}  // namespace vt::back

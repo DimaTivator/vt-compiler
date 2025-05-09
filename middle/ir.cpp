@@ -73,6 +73,10 @@ bool IsAddr(const std::string& name) {
     return std::regex_match(name, std::regex("addr[0-9]+'"));
 }
 
+bool IsSpill(const std::string& name) {
+    return std::regex_match(name, std::regex("spill[0-9]+'"));
+}
+
 int GetLargestVReg(const IR& ir) {
     int max = 0;
     for (const auto& instr : ir) {

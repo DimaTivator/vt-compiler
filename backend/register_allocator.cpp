@@ -4,6 +4,7 @@
 #include <set>
 #include <string>
 #include <unordered_map>
+#include <unordered_set>
 #include <vector>
 
 namespace vt::back {
@@ -26,17 +27,28 @@ struct Interval {
 using IR = ir::IR;
 
 std::vector<Interval> ComputeLiveIntervals(const IR& ir) {
-    std::unordered_map<std::string, Interval> intervals;
+    std::unordered_map<std::string, int> label_to_index;
     for (int i = 0; i < std::ssize(ir); ++i) {
+        const auto& instr = ir[i];
+        if (instr.op == ir::IRInstruction::Op::LABEL) {
+            label_to_index[instr.result] = i;
+        }
+    }
+    std::set<std::pair<int, int>> visited;
+
+    int time = 0;
+
+    std::unordered_map<std::string, Interval> intervals;
+    for (int i = 0; i < std::ssize(ir); ++i, ++time) {
         const auto& instr = ir[i];
         auto process = [&](const std::string& reg) {
             if (!ir::IsVReg(reg)) {
                 return;
             }
             if (!intervals.contains(reg)) {
-                intervals[reg] = {reg, i, i};
+                intervals[reg] = {reg, time, time};
             } else {
-                intervals[reg].end = i;
+                intervals[reg].end = time;
             }
         };
         process(instr.result);
@@ -45,6 +57,14 @@ std::vector<Interval> ComputeLiveIntervals(const IR& ir) {
         }
         if (const auto* arg1 = std::get_if<std::string>(&instr.arg2)) {
             process(*arg1);
+        }
+        if (instr.op == ir::IRInstruction::Op::GOTO) {
+            auto label = instr.result;
+            if (label_to_index[label] < i &&
+                !visited.contains({i, label_to_index[label]})) {
+                visited.insert({i, label_to_index[label]});
+                i = label_to_index[label];
+            }
         }
     }
 

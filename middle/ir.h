@@ -40,7 +40,7 @@ struct IRInstruction {
         GOTO,            // GOTO <label>, 0, 0
 
         LOAD,            // LOAD    <phys_reg>, <spill_slot>, 0
-        STORE,           // STORE   <phys_reg>, <spill_slot>, 0
+        STORE,           // STORE   <spill_slot>, <phys_reg>, 0
 
         LOADA,           // LOADA    <phys_reg>, <addr>, 0
         STOREA,          // STOREA   <phys_reg>, <addr>, 0
@@ -61,6 +61,7 @@ private:
 bool IsVReg(const std::string& name);
 bool IsLabel(const std::string& name);
 bool IsAddr(const std::string& name);
+bool IsSpill(const std::string& name);
 
 int GetLargestVReg(const std::vector<IRInstruction>& ir);
 int GetLargestLabel(const std::vector<IRInstruction>& ir);

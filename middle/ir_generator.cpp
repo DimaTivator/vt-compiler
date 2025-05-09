@@ -11,8 +11,14 @@ void AssignVarToReg(IRInstruction instr,
                     std::unordered_map<std::string, std::string>& var_to_reg) {
     if (!IsVReg(instr.result)) {
         std::string var = instr.result;
-        if (const auto* reg = std::get_if<std::string>(&instr.arg1)) {
-            var_to_reg[var] = *reg;
+        if (!var_to_reg.contains(var)) {
+            if (const auto* name = std::get_if<std::string>(&instr.arg1)) {
+                if (IsVReg(*name)) {
+                    var_to_reg[var] = *name;
+                } else {
+                    var_to_reg[var] = var_to_reg[*name];
+                }
+            }
         }
     }
 }
@@ -48,6 +54,7 @@ IR RemoveVariableNames(const IR& ir) {
         switch (instr.op) {
             case IRInstruction::Op::ASSIGN: {
                 AssignVarToReg(instr, var_to_reg);
+                result.push_back(ReplaceVarWithReg(instr, var_to_reg));
             } break;
             case IRInstruction::Op::LABEL:
             case IRInstruction::Op::LOAD_CONST: {

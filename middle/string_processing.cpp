@@ -4,11 +4,10 @@
 
 namespace vt::ir {
 
-StringProcessor::StringProcessor(const IR& ir)
-    : addr_(0),
-      vreg_index_(GetLargestVReg(ir)),
-      label_index_(GetLargestLabel(ir)),
-      ir_(ir) {};
+StringProcessor::StringProcessor(const IR& ir) : addr_(0), ir_(ir) {
+    vreg_index_ = GetLargestVReg(ir_) + 1;
+    label_index_ = GetLargestLabel(ir) + 1;
+}
 
 void StringProcessor::SetStringOperations() {
     std::unordered_set<std::string> string_regs;
