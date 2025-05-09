@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 
-#include "../frontend/ast_builder.h"
-#include "../middle/ir_generator.h"
+#include "../../frontend/ast_builder.h"
+#include "../ir_generator.h"
 
 using namespace vt::ir;
 using namespace vt::ast;

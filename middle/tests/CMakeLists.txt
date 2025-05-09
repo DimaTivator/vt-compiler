@@ -1,17 +1,17 @@
 set(FRONTEND_SOURCES
-        ../frontend/utils/ast_utils.cpp
-        ../frontend/semantic.cpp
-        ../frontend/VtBaseListener.cpp
-        ../frontend/VtBaseVisitor.cpp
-        ../frontend/VtLexer.cpp
-        ../frontend/VtParser.cpp
-        ../frontend/VtListener.cpp
-        ../frontend/VtVisitor.cpp
+        ../../frontend/utils/ast_utils.cpp
+        ../../frontend/semantic.cpp
+        ../../frontend/VtBaseListener.cpp
+        ../../frontend/VtBaseVisitor.cpp
+        ../../frontend/VtLexer.cpp
+        ../../frontend/VtParser.cpp
+        ../../frontend/VtListener.cpp
+        ../../frontend/VtVisitor.cpp
 )
 
 set(MIDDLE_SOURCES
-        ../middle/ir_generator.cpp
-        ../middle/utils/ir_utils.cpp
+        ../ir_generator.cpp
+        ../utils/ir_utils.cpp
 )
 
 add_executable(test_ir_generator

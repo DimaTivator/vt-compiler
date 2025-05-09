@@ -5,15 +5,70 @@
 
 namespace vt::ir {
 
-IRGenerator::IRGenerator() : temp_count_(0), label_count_(0) {}
+namespace {
 
-IR IRGenerator::Generate(const std::shared_ptr<vt::ast::BlockNode>& root) {
-    EmitBlock(root);
-    return ir_;
+void AssignVarToReg(IRInstruction instr,
+                    std::unordered_map<std::string, std::string>& var_to_reg) {
+    if (!IsVReg(instr.result)) {
+        std::string var = instr.result;
+        if (const auto* reg = std::get_if<std::string>(&instr.arg1)) {
+            var_to_reg[var] = *reg;
+        }
+    }
 }
+
+IRInstruction ReplaceVarWithReg(
+    IRInstruction instr,
+    const std::unordered_map<std::string, std::string>& var_to_reg) {
+    //
+    IRInstruction new_instr = instr;
+    if (!IsVReg(instr.result) && var_to_reg.contains(instr.result)) {
+        new_instr.result = var_to_reg.at(instr.result);
+    }
+    if (const auto* arg1 = std::get_if<std::string>(&instr.arg1)) {
+        if (!IsVReg(*arg1) && var_to_reg.contains(*arg1)) {
+            new_instr.arg1 = var_to_reg.at(*arg1);
+        }
+    }
+    if (const auto* arg2 = std::get_if<std::string>(&instr.arg2)) {
+        if (!IsVReg(*arg2) && var_to_reg.contains(*arg2)) {
+            new_instr.arg2 = var_to_reg.at(*arg2);
+        }
+    }
+    return new_instr;
+}
+
+}  // namespace
+
+IR RemoveVariableNames(const IR& ir) {
+    IR result;
+    std::unordered_map<std::string, std::string> var_to_reg;
+
+    for (const auto& instr : ir) {
+        switch (instr.op) {
+            case IRInstruction::Op::ASSIGN: {
+                AssignVarToReg(instr, var_to_reg);
+            } break;
+            case IRInstruction::Op::LABEL:
+            case IRInstruction::Op::LOAD_CONST: {
+                result.push_back(instr);
+            } break;
+            default: {
+                result.push_back(ReplaceVarWithReg(instr, var_to_reg));
+            }
+        }
+    }
+
+    return result;
+}
+
+IRGenerator::IRGenerator() : temp_count_(0), label_count_(0) {}
 
 IR IRGenerator::Generate(const std::shared_ptr<vt::ast::ASTNode>& root) {
     EmitBlockNode(root);
+    ir_ = RemoveVariableNames(ir_);
+    StringProcessor string_processor(ir_);
+    ir_ = string_processor.Process();
     return ir_;
 }
 
@@ -163,63 +218,6 @@ void IRGenerator::EmitBlock(const std::shared_ptr<vt::ast::BlockNode>& block) {
 void IRGenerator::EmitBlockNode(const std::shared_ptr<vt::ast::ASTNode>& node) {
     auto block = std::dynamic_pointer_cast<vt::ast::BlockNode>(node);
     EmitBlock(block);
-}
-
-namespace {
-
-void AssignVarToReg(IRInstruction instr,
-                    std::unordered_map<std::string, std::string>& var_to_reg) {
-    if (!IsVReg(instr.result)) {
-        std::string var = instr.result;
-        if (const auto* reg = std::get_if<std::string>(&instr.arg1)) {
-            var_to_reg[var] = *reg;
-        }
-    }
-}
-
-IRInstruction ReplaceVarWithReg(
-    IRInstruction instr,
-    const std::unordered_map<std::string, std::string>& var_to_reg) {
-    //
-    IRInstruction new_instr = instr;
-    if (!IsVReg(instr.result) && var_to_reg.contains(instr.result)) {
-        new_instr.result = var_to_reg.at(instr.result);
-    }
-    if (const auto* arg1 = std::get_if<std::string>(&instr.arg1)) {
-        if (!IsVReg(*arg1) && var_to_reg.contains(*arg1)) {
-            new_instr.arg1 = var_to_reg.at(*arg1);
-        }
-    }
-    if (const auto* arg2 = std::get_if<std::string>(&instr.arg2)) {
-        if (!IsVReg(*arg2) && var_to_reg.contains(*arg2)) {
-            new_instr.arg2 = var_to_reg.at(*arg2);
-        }
-    }
-    return new_instr;
-}
-
-}  // namespace
-
-IR RemoveVariableNames(const IR& ir) {
-    IR result;
-    std::unordered_map<std::string, std::string> var_to_reg;
-
-    for (const auto& instr : ir) {
-        switch (instr.op) {
-            case IRInstruction::Op::ASSIGN: {
-                AssignVarToReg(instr, var_to_reg);
-            } break;
-            case IRInstruction::Op::LABEL:
-            case IRInstruction::Op::LOAD_CONST: {
-                result.push_back(instr);
-            } break;
-            default: {
-                result.push_back(ReplaceVarWithReg(instr, var_to_reg));
-            }
-        }
-    }
-
-    return result;
 }
 
 }  // namespace vt::ir

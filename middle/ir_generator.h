@@ -4,14 +4,13 @@
 
 #include "../frontend/ast.h"
 #include "ir.h"
+#include "string_processing.h"
 
 namespace vt::ir {
 
 class IRGenerator {
 public:
     IRGenerator();
-
-    IR Generate(const std::shared_ptr<ast::BlockNode>& root);
 
     IR Generate(const std::shared_ptr<ast::ASTNode>& root);
 
@@ -41,7 +40,5 @@ private:
 
     void EmitBlockNode(const std::shared_ptr<ast::ASTNode>& node);
 };
-
-IR RemoveVariableNames(const IR& ir);
 
 }  // namespace vt::ir
