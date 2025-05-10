@@ -20,8 +20,14 @@ add_executable(vt_compiler
         frontend/VtParser.cpp
         frontend/VtListener.cpp
         frontend/VtVisitor.cpp
+        middle/ir.cpp
         middle/ir_generator.cpp
         middle/utils/ir_utils.cpp
+        middle/string_processing.cpp
+        backend/register_allocator.cpp
+        backend/asm_generation.cpp
+        backend/address_alloc.cpp
+        backend/utils/backend_utils.cpp
 )
 
 target_link_libraries(vt_compiler antlr4-runtime)
