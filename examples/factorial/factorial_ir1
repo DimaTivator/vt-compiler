@@ -1,0 +1,51 @@
+LOAD_CONST v0', 1, 0
+ASSIGN v0', v0', 0
+LOAD_CONST v1', 1, 0
+ASSIGN v1', v1', 0
+LABEL L0', 0, 0
+LOAD_CONST v2', 10, 0
+CMP_LE v3', v1', v2'
+BRANCH_IF_ZERO L1', v3', 0
+MUL v4', v0', v1'
+ASSIGN v0', v4', 0
+LOAD_CONST v5', 1, 0
+ADD v6', v1', v5'
+ASSIGN v1', v6', 0
+GOTO L0', 0, 0
+LABEL L1', 0, 0
+LOAD_CONST v9', addr0', 
+LOAD_CONST v8', 0, 
+STOREA v8', v9', 0
+ADD v9', v9', 1
+ASSIGN v7', v0', 
+CMP_LT v11', v7', v8'
+BRANCH_IF_ZERO L_loop, v11', 0
+SUB v7', v8', v7'
+LABEL L_loop, 0, 0
+LOAD_CONST v8', 10, 
+MOD v10', v7', v8'
+ADD v10', v10', 48
+STOREA v10', v9', 0
+ADD v9', v9', 1
+DIV v7', v7', v8'
+CMP_EQ v11', v7', 0
+BRANCH_IF_ZERO L_loop, v11', 0
+LOAD_CONST v8', 0, 
+CMP_LE v11', v0', v8'
+BRANCH_IF_ZERO L_shift, v11', 0
+LOAD_CONST v10', 45, 
+STOREA v10', v9', 0
+LABEL L_shift, 0, 0
+LOAD_CONST v8', 1, 
+SUB v9', v9', v8'
+LABEL print_loop_label, 0, 0
+LOADA v7', v9', 0
+CMP_EQ v11', v7', 0
+BRANCH_IF_ZERO cont_loop, v11', 0
+GOTO stop_loop, 0, 0
+LABEL cont_loop, 0, 0
+PRINT , v7', 0
+LOAD_CONST v8', 1, 
+SUB v9', v9', v8'
+GOTO print_loop_label, 0, 0
+LABEL stop_loop, 0, 0

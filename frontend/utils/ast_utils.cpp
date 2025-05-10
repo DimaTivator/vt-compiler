@@ -73,7 +73,7 @@ void PrintAST(const std::shared_ptr<ASTNode>& node, int indent,
         PrintAST(bin_op->right, indent + 1, out);
 
     } else if (auto un_op = std::dynamic_pointer_cast<UnaryOpNode>(node)) {
-        std::cout << "UnaryOp: " << un_op->op << "\n";
+        out << "UnaryOp: " << un_op->op << "\n";
         PrintAST(un_op->operand, indent + 1, out);
 
     } else if (auto int_lit = std::dynamic_pointer_cast<IntLiteralNode>(node)) {

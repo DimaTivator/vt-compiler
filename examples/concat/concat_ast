@@ -1,0 +1,11 @@
+Block:
+  VarDecl: string a
+    StringLiteral: Hello, 
+  VarDecl: string b
+    StringLiteral: World!
+  VarDecl: string c
+    BinaryOp: +
+      VarRef: a
+      VarRef: b
+  Prints:
+    VarRef: c

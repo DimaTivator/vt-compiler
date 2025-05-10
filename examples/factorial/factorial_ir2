@@ -1,0 +1,51 @@
+LOAD_CONST x1, 1, 0
+ASSIGN x1, x1, 0
+LOAD_CONST x2, 1, 0
+ASSIGN x2, x2, 0
+LABEL L0', 0, 0
+LOAD_CONST x3, 10, 0
+CMP_LE x4, x2, x3
+BRANCH_IF_ZERO L1', x4, 0
+MUL x5, x1, x2
+ASSIGN x1, x5, 0
+LOAD_CONST x6, 1, 0
+ADD x7, x2, x6
+ASSIGN x2, x7, 0
+GOTO L0', 0, 0
+LABEL L1', 0, 0
+LOAD_CONST x2, 49152, 
+LOAD_CONST x3, 0, 
+STOREA x3, x2, 0
+ADD x2, x2, 1
+ASSIGN x4, x1, 
+CMP_LT x5, x4, x3
+BRANCH_IF_ZERO L_loop, x5, 0
+SUB x4, x3, x4
+LABEL L_loop, 0, 0
+LOAD_CONST x3, 10, 
+MOD x6, x4, x3
+ADD x6, x6, 48
+STOREA x6, x2, 0
+ADD x2, x2, 1
+DIV x4, x4, x3
+CMP_EQ x5, x4, 0
+BRANCH_IF_ZERO L_loop, x5, 0
+LOAD_CONST x3, 0, 
+CMP_LE x5, x1, x3
+BRANCH_IF_ZERO L_shift, x5, 0
+LOAD_CONST x6, 45, 
+STOREA x6, x2, 0
+LABEL L_shift, 0, 0
+LOAD_CONST x3, 1, 
+SUB x2, x2, x3
+LABEL print_loop_label, 0, 0
+LOADA x4, x2, 0
+CMP_EQ x5, x4, 0
+BRANCH_IF_ZERO cont_loop, x5, 0
+GOTO stop_loop, 0, 0
+LABEL cont_loop, 0, 0
+PRINT , x4, 0
+LOAD_CONST x3, 1, 
+SUB x2, x2, x3
+GOTO print_loop_label, 0, 0
+LABEL stop_loop, 0, 0

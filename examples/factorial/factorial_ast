@@ -1,0 +1,22 @@
+Block:
+  VarDecl: int s
+    IntLiteral: 1
+  VarDecl: int i
+    IntLiteral: 1
+  While:
+    Condition:
+      BinaryOp: <=
+        VarRef: i
+        IntLiteral: 10
+    Body:
+      Block:
+        Assignment: s
+          BinaryOp: *
+            VarRef: s
+            VarRef: i
+        Assignment: i
+          BinaryOp: +
+            VarRef: i
+            IntLiteral: 1
+  Printi:
+    VarRef: s

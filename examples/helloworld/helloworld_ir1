@@ -1,0 +1,54 @@
+LOAD_CONST v1', addr0', 
+LOAD_CONST v0', 72, 
+STOREA v0', v1', 0
+ADD v1', v1', 1
+LOAD_CONST v0', 101, 
+STOREA v0', v1', 0
+ADD v1', v1', 1
+LOAD_CONST v0', 108, 
+STOREA v0', v1', 0
+ADD v1', v1', 1
+LOAD_CONST v0', 108, 
+STOREA v0', v1', 0
+ADD v1', v1', 1
+LOAD_CONST v0', 111, 
+STOREA v0', v1', 0
+ADD v1', v1', 1
+LOAD_CONST v0', 44, 
+STOREA v0', v1', 0
+ADD v1', v1', 1
+LOAD_CONST v0', 32, 
+STOREA v0', v1', 0
+ADD v1', v1', 1
+LOAD_CONST v0', 87, 
+STOREA v0', v1', 0
+ADD v1', v1', 1
+LOAD_CONST v0', 111, 
+STOREA v0', v1', 0
+ADD v1', v1', 1
+LOAD_CONST v0', 114, 
+STOREA v0', v1', 0
+ADD v1', v1', 1
+LOAD_CONST v0', 108, 
+STOREA v0', v1', 0
+ADD v1', v1', 1
+LOAD_CONST v0', 100, 
+STOREA v0', v1', 0
+ADD v1', v1', 1
+LOAD_CONST v0', 33, 
+STOREA v0', v1', 0
+ADD v1', v1', 1
+LOAD_CONST v0', 0, 
+STOREA v0', v1', 0
+LOAD_CONST v0', addr0', 0
+LOAD_CONST v3', addr0', 
+LABEL L1', 0, 0
+LOADA v2', v3', 0
+CMP_EQ v4', v2', 0
+BRANCH_IF_ZERO L2', v4', 0
+GOTO L3', 0, 0
+LABEL L2', 0, 0
+PRINT , v2', 0
+ADD v3', v3', 1
+GOTO L1', 0, 0
+LABEL L3', 0, 0

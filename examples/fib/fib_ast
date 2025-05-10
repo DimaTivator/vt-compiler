@@ -1,0 +1,30 @@
+Block:
+  VarDecl: int prev1
+    IntLiteral: 1
+  VarDecl: int prev2
+    IntLiteral: 1
+  VarDecl: int fib
+    IntLiteral: 0
+  VarDecl: int i
+    IntLiteral: 0
+  While:
+    Condition:
+      BinaryOp: <
+        VarRef: i
+        IntLiteral: 10
+    Body:
+      Block:
+        Assignment: fib
+          BinaryOp: +
+            VarRef: prev1
+            VarRef: prev2
+        Assignment: prev1
+          VarRef: prev2
+        Assignment: prev2
+          VarRef: fib
+        Assignment: i
+          BinaryOp: +
+            VarRef: i
+            IntLiteral: 1
+  Printi:
+    VarRef: fib
