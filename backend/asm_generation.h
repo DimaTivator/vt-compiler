@@ -13,6 +13,7 @@
  * SUB <res>, <lhs>, <rhs>              ---> sub <res>, <lhs>, <rhs>
  * MUL <res>, <lhs>, <rhs>              ---> mul <res>, <lhs>, <rhs>
  * DIV <res>, <lhs>, <rhs>              ---> div <res>, <lhs>, <rhs>
+ * MOD <res>, <lhs>, <rhs>              ---> rem <res>, <lhs>, <rhs>
  * NOT <res>, <arg>                     ---> xor <res>, <arg>, 2^12 - 1
  * CMP_EQ <res>, <lhs>, <rhs>           ---> seq <res>, <lhs>, <rhs>
  * CMP_NE <res>, <lhs>, <rhs>           ---> sne <res>, <lhs>, <rhs>

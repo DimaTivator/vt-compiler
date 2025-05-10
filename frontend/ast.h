@@ -62,9 +62,17 @@ public:
     std::shared_ptr<ASTNode> expr;
 };
 
-class PrintNode : public ASTNode {
+class PrintsNode : public ASTNode {
 public:
-    PrintNode(antlr4::Token* token, std::shared_ptr<ASTNode> expr)
+    PrintsNode(antlr4::Token* token, std::shared_ptr<ASTNode> expr)
+        : ASTNode(token), expr(std::move(expr)) {}
+
+    std::shared_ptr<ASTNode> expr;
+};
+
+class PrintiNode : public ASTNode {
+public:
+    PrintiNode(antlr4::Token* token, std::shared_ptr<ASTNode> expr)
         : ASTNode(token), expr(std::move(expr)) {}
 
     std::shared_ptr<ASTNode> expr;

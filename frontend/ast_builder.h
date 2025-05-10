@@ -16,7 +16,9 @@ public:
 
     std::any visitAssignment(VtParser::AssignmentContext* context) override;
 
-    std::any visitPrintStmt(VtParser::PrintStmtContext* context) override;
+    std::any visitPrintsStmt(VtParser::PrintsStmtContext* context) override;
+
+    std::any visitPrintiStmt(VtParser::PrintiStmtContext* context) override;
 
     std::any visitIfStmt(VtParser::IfStmtContext* context) override;
 

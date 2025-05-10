@@ -192,9 +192,15 @@ void IRGenerator::EmitStatement(const std::shared_ptr<vt::ast::ASTNode>& node) {
         return;
     }
 
-    if (auto print = std::dynamic_pointer_cast<ast::PrintNode>(node)) {
-        auto arg = EmitExpr(print->expr);
-        Emit({IRInstruction::Op::PRINT, "", arg, 0});
+    if (auto prints = std::dynamic_pointer_cast<ast::PrintsNode>(node)) {
+        auto arg = EmitExpr(prints->expr);
+        Emit({IRInstruction::Op::PRINTS, "", arg, 0});
+        return;
+    }
+
+    if (auto printi = std::dynamic_pointer_cast<ast::PrintiNode>(node)) {
+        auto arg = EmitExpr(printi->expr);
+        Emit({IRInstruction::Op::PRINTI, "", arg, 0});
         return;
     }
 

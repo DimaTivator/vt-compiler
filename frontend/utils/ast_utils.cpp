@@ -29,9 +29,13 @@ void PrintAST(const std::shared_ptr<ASTNode>& node, int indent) {
         std::cout << "Assignment: " << assign->var_name << "\n";
         PrintAST(assign->expr, indent + 1);
 
-    } else if (auto print_stmt = std::dynamic_pointer_cast<PrintNode>(node)) {
-        std::cout << "Print:\n";
-        PrintAST(print_stmt->expr, indent + 1);
+    } else if (auto prints_stmt = std::dynamic_pointer_cast<PrintsNode>(node)) {
+        std::cout << "Prints:\n";
+        PrintAST(prints_stmt->expr, indent + 1);
+
+    } else if (auto printi_stmt = std::dynamic_pointer_cast<PrintiNode>(node)) {
+        std::cout << "Printi:\n";
+        PrintAST(printi_stmt->expr, indent + 1);
 
     } else if (auto if_node = std::dynamic_pointer_cast<IfNode>(node)) {
         std::cout << "If:\n";

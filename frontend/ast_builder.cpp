@@ -18,8 +18,11 @@ std::any ASTBuilder::visitStatement(VtParser::StatementContext* context) {
     if (context->assignment() != nullptr) {
         return visit(context->assignment());
     }
-    if (context->printStmt() != nullptr) {
-        return visit(context->printStmt());
+    if (context->printsStmt() != nullptr) {
+        return visit(context->printsStmt());
+    }
+    if (context->printiStmt() != nullptr) {
+        return visit(context->printiStmt());
     }
     if (context->ifStmt() != nullptr) {
         return visit(context->ifStmt());
@@ -49,9 +52,14 @@ std::any ASTBuilder::visitAssignment(VtParser::AssignmentContext* context) {
                                     std::move(expr));
 }
 
-std::any ASTBuilder::visitPrintStmt(VtParser::PrintStmtContext* context) {
+std::any ASTBuilder::visitPrintsStmt(VtParser::PrintsStmtContext* context) {
     auto expr = std::any_cast<std::shared_ptr<ASTNode>>(visit(context->expr()));
-    return MakeNode<PrintNode>(context->start, std::move(expr));
+    return MakeNode<PrintsNode>(context->start, std::move(expr));
+}
+
+std::any ASTBuilder::visitPrintiStmt(VtParser::PrintiStmtContext* context) {
+    auto expr = std::any_cast<std::shared_ptr<ASTNode>>(visit(context->expr()));
+    return MakeNode<PrintiNode>(context->start, std::move(expr));
 }
 
 std::any ASTBuilder::visitIfStmt(VtParser::IfStmtContext* context) {

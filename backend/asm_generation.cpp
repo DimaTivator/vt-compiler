@@ -51,6 +51,7 @@ Asm GenerateASM(const ir::IR& ir) {
     for (const auto& instr : cleaned_ir) {
         std::string asm_instr;
         switch (instr.op) {
+            case (Op::ASSIGNS):
             case (Op::ASSIGN): {
                 asm_instr = Concat("addi", instr.result, Get(instr.arg1), 0);
             } break;
@@ -77,6 +78,10 @@ Asm GenerateASM(const ir::IR& ir) {
             case (Op::DIV): {
                 asm_instr = Concat("div", instr.result, Get(instr.arg1),
                                    Get(instr.arg2));
+            } break;
+            case (Op::MOD): {
+                    asm_instr = Concat("rem", instr.result, Get(instr.arg1),
+                                       Get(instr.arg2));
             } break;
             case (Op::NOT): {
                 asm_instr =

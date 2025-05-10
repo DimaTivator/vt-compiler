@@ -18,6 +18,7 @@ struct IRInstruction {
         SUB,             // SUB <res>, <lhs>, <rhs>
         MUL,             // MUL <res>, <lhs>, <rhs>
         DIV,             // DIV <res>, <lhs>, <rhs>
+        MOD,             // MOD <res>, <lhs>, <rhs>
         NOT,             // NOT <res>, <arg>
         CONCAT,          // CONCAT <res>, <lhs>, <rhs>           [for string]
         CMP_EQ,          // CMP_EQ <res>, <lhs>, <rhs>
@@ -34,7 +35,9 @@ struct IRInstruction {
         CMP_GES,         // CMP_GES <res>, <lhs>, <rhs>          [for string]
         AND,             // AND <res>, <lhs>, <rhs>
         OR,              // OR <res>, <lhs>, <rhs>
-        PRINT,           // PRINT "", <arg>, 0
+        PRINT,           // PRINT <reg>, 0, 0                   [for numeric]
+        PRINTS,          // PRINTS "", <arg>, 0                 [for string]
+        PRINTI,          // PRINTI "", <arg>, 0                 [for numeric]
         LABEL,           // LABEL <label>, 0, 0
         BRANCH_IF_ZERO,  // BRANCH_IF_ZERO <label>, <arg>, 0
         GOTO,            // GOTO <label>, 0, 0

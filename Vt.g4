@@ -11,7 +11,8 @@ program
 statement
     : varDecl ';'
     | assignment ';'
-    | printStmt ';'
+    | printsStmt ';'
+    | printiStmt ';'
     | ifStmt
     | whileStmt
     | block
@@ -30,8 +31,12 @@ assignment
     : ID '=' expr
     ;
 
-printStmt
-    : 'print' expr
+printsStmt
+    : 'prints' expr
+    ;
+
+printiStmt
+    : 'printi' expr
     ;
 
 ifStmt

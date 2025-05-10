@@ -39,8 +39,12 @@ private:
     void GenerateCompare(const IRInstruction& instr, IR& ir);
     IR UnrollCompare(const IR& ir);
 
-    void GeneratePrint(const IRInstruction& instr, IR& ir);
-    IR UnrollPrint(const IR& ir);
+
+    void GeneratePrinti(const IRInstruction& instr, IR& ir);
+    IR UnrollPrinti(const IR& ir);
+
+    void GeneratePrints(const IRInstruction& instr, IR& ir);
+    IR UnrollPrints(const IR& ir);
 };
 
 }  // namespace vt::ir

@@ -98,9 +98,21 @@ void SemanticAnalyzer::AnalyzeStatement(
                    std::dynamic_pointer_cast<ast::AssignmentNode>(statement)) {
         AnalyzeAssignment(assign_n);
 
-    } else if (auto print_n =
-                   std::dynamic_pointer_cast<ast::PrintNode>(statement)) {
-        AnalyzeExpression(print_n->expr);
+    } else if (auto prints_n =
+                   std::dynamic_pointer_cast<ast::PrintsNode>(statement)) {
+        Type type = AnalyzeExpression(prints_n->expr);
+        if (type != Type::STRING) {
+            ReportError(prints_n->GetToken(),
+                        "Prints statement requires a string expression.");
+        }
+
+    } else if (auto printi_n =
+                   std::dynamic_pointer_cast<ast::PrintiNode>(statement)) {
+        Type type = AnalyzeExpression(printi_n->expr);
+        if (type != Type::INT) {
+            ReportError(printi_n->GetToken(),
+                        "Printi statement requires integer expression.");
+        }
 
     } else if (auto if_n = std::dynamic_pointer_cast<ast::IfNode>(statement)) {
         AnalyzeIf(if_n);
